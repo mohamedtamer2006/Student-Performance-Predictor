@@ -18,6 +18,7 @@ INCLUDE_ROOT_FILES = [
     "requirements.txt",
     "README.md",
     ".gitignore",
+    "pytest.ini",
 ]
 
 INCLUDE_DIRS = [
