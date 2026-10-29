@@ -1,0 +1,246 @@
+{
+  "metadata": {
+    "created_at": "2026-10-29T20:02:10.905705+00:00",
+    "dataset_name": "UCI Student Performance (Mathematics)",
+    "dataset_url": "https://archive.ics.uci.edu/dataset/320/student+performance",
+    "dataset_download_url": "https://archive.ics.uci.edu/static/public/320/student+performance.zip",
+    "random_seed": 42,
+    "test_split_ratio": 0.2,
+    "dataset_summary": {
+      "n_rows": 395,
+      "n_columns": 33,
+      "n_features": 30,
+      "n_categorical_features": 17,
+      "n_numerical_features": 13,
+      "missing_values_total": 0,
+      "duplicate_rows": 0,
+      "regression_target_stats": {
+        "min": 0.0,
+        "max": 20.0,
+        "mean": 10.42,
+        "median": 11.0,
+        "std": 4.58
+      },
+      "classification_target_distribution": {
+        "Medium": 165,
+        "Low": 130,
+        "High": 100
+      }
+    },
+    "classification_boundaries": {
+      "bins": [
+        -0.1,
+        9.5,
+        13.5,
+        20.0
+      ],
+      "labels": [
+        "Low",
+        "Medium",
+        "High"
+      ],
+      "descriptions": {
+        "Low": "Grade 0\u20139 (Needs Support / At Risk of Failing)",
+        "Medium": "Grade 10\u201313 (Satisfactory / Passing)",
+        "High": "Grade 14\u201320 (Good / High Academic Achievement)"
+      }
+    }
+  },
+  "regression": {
+    "selected_model": "DecisionTree",
+    "cv_comparison": {
+      "DecisionTree": {
+        "cv_mae": 3.1013,
+        "cv_r2": 0.1334,
+        "cv_rmse": 4.1203
+      },
+      "Ridge": {
+        "cv_mae": 3.2616,
+        "cv_r2": 0.0659,
+        "cv_rmse": 4.3006
+      },
+      "LinearRegression": {
+        "cv_mae": 3.3365,
+        "cv_r2": 0.0184,
+        "cv_rmse": 4.4067
+      },
+      "KNeighbors": {
+        "cv_mae": 3.3481,
+        "cv_r2": 0.0285,
+        "cv_rmse": 4.3866
+      }
+    },
+    "test_metrics": {
+      "mae": 3.5212,
+      "rmse": 4.6739,
+      "r2": 0.0945
+    },
+    "baseline_metrics": {
+      "mae": 3.665,
+      "rmse": 4.9173,
+      "r2": -0.0023
+    },
+    "train_samples": 316,
+    "test_samples": 79
+  },
+  "classification": {
+    "selected_model": "LogisticRegression_C1",
+    "cv_comparison": {
+      "LogisticRegression_C1": {
+        "cv_accuracy": 0.4811,
+        "cv_f1_macro": 0.4827,
+        "cv_f1_weighted": 0.4782
+      },
+      "LogisticRegression_C01": {
+        "cv_accuracy": 0.4622,
+        "cv_f1_macro": 0.4562,
+        "cv_f1_weighted": 0.4566
+      },
+      "DecisionTree": {
+        "cv_accuracy": 0.4684,
+        "cv_f1_macro": 0.4649,
+        "cv_f1_weighted": 0.4662
+      },
+      "KNeighbors": {
+        "cv_accuracy": 0.4208,
+        "cv_f1_macro": 0.4235,
+        "cv_f1_weighted": 0.4171
+      }
+    },
+    "test_metrics": {
+      "accuracy": 0.4557,
+      "precision_macro": 0.4557,
+      "recall_macro": 0.4515,
+      "f1_macro": 0.4531,
+      "precision_weighted": 0.4553,
+      "recall_weighted": 0.4557,
+      "f1_weighted": 0.4551,
+      "confusion_matrix": [
+        [
+          13,
+          11,
+          2
+        ],
+        [
+          10,
+          15,
+          8
+        ],
+        [
+          4,
+          8,
+          8
+        ]
+      ],
+      "labels": [
+        "Low",
+        "Medium",
+        "High"
+      ],
+      "classification_report": {
+        "Low": {
+          "precision": 0.48148148148148145,
+          "recall": 0.5,
+          "f1-score": 0.49056603773584906,
+          "support": 26.0
+        },
+        "Medium": {
+          "precision": 0.4411764705882353,
+          "recall": 0.45454545454545453,
+          "f1-score": 0.44776119402985076,
+          "support": 33.0
+        },
+        "High": {
+          "precision": 0.4444444444444444,
+          "recall": 0.4,
+          "f1-score": 0.42105263157894735,
+          "support": 20.0
+        },
+        "accuracy": 0.45569620253164556,
+        "macro avg": {
+          "precision": 0.4557007988380537,
+          "recall": 0.4515151515151515,
+          "f1-score": 0.4531266211148824,
+          "support": 79.0
+        },
+        "weighted avg": {
+          "precision": 0.45526874603568573,
+          "recall": 0.45569620253164556,
+          "f1-score": 0.4550872027303303,
+          "support": 79.0
+        }
+      }
+    },
+    "baseline_metrics": {
+      "accuracy": 0.4177,
+      "precision_macro": 0.1392,
+      "recall_macro": 0.3333,
+      "f1_macro": 0.1964,
+      "precision_weighted": 0.1745,
+      "recall_weighted": 0.4177,
+      "f1_weighted": 0.2462,
+      "confusion_matrix": [
+        [
+          0,
+          26,
+          0
+        ],
+        [
+          0,
+          33,
+          0
+        ],
+        [
+          0,
+          20,
+          0
+        ]
+      ],
+      "labels": [
+        "Low",
+        "Medium",
+        "High"
+      ],
+      "classification_report": {
+        "Low": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 26.0
+        },
+        "Medium": {
+          "precision": 0.4177215189873418,
+          "recall": 1.0,
+          "f1-score": 0.5892857142857143,
+          "support": 33.0
+        },
+        "High": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 20.0
+        },
+        "accuracy": 0.4177215189873418,
+        "macro avg": {
+          "precision": 0.13924050632911392,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.19642857142857142,
+          "support": 79.0
+        },
+        "weighted avg": {
+          "precision": 0.17449126742509213,
+          "recall": 0.4177215189873418,
+          "f1-score": 0.24615732368896928,
+          "support": 79.0
+        }
+      }
+    },
+    "train_samples": 316,
+    "test_samples": 79,
+    "class_labels": [
+      "Low",
+      "Medium",
+      "High"
+    ]
+  }
+}
