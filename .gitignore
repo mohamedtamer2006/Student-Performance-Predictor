@@ -26,6 +26,11 @@ venv/
 .venv/
 ENV/
 
+# Packaging & Delivery Archives
+*.zip
+*.tar.gz
+Student_Performance_Prediction_Clean.zip
+
 # Testing & Coverage
 .pytest_cache/
 .coverage

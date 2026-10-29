@@ -68,11 +68,16 @@ def get_cached_evaluation_results() -> Tuple[Dict[str, Any], str]:
 
 
 def render_sidebar():
-    """Render the application navigation sidebar."""
-    st.sidebar.image(
-        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=400&q=80",
-        caption="Student Success Intelligence",
-        use_container_width=True,
+    """Render the application navigation sidebar (100% offline)."""
+    st.sidebar.markdown(
+        """
+        <div style="text-align: center; padding: 12px 0; background-color: #f0f2f6; border-radius: 8px; margin-bottom: 12px;">
+            <span style="font-size: 38px;">🎓</span>
+            <h3 style="margin: 4px 0 0 0; color: #1E3A8A; font-weight: 700;">Student Success</h3>
+            <p style="margin: 0; font-size: 12px; color: #64748B;">AI Early Warning Platform</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
     st.sidebar.title("Navigation")
     choice = st.sidebar.radio(

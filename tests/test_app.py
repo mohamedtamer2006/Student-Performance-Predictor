@@ -4,7 +4,13 @@
 import py_compile
 from pathlib import Path
 import pytest
-from streamlit.testing.v1 import AppTest
+
+try:
+    import streamlit
+    from streamlit.testing.v1 import AppTest
+    HAS_STREAMLIT = True
+except ImportError:
+    HAS_STREAMLIT = False
 
 from src.config import ALL_FEATURE_COLUMNS, BASE_DIR, FEATURE_METADATA
 from src.evaluate import load_evaluation_results
@@ -55,6 +61,7 @@ def test_app_model_loading_and_predict_flow():
     assert 0.0 <= prediction["predicted_grade"] <= 20.0
 
 
+@pytest.mark.skipif(not HAS_STREAMLIT, reason="Streamlit is not installed in the testing environment.")
 def test_streamlit_app_renders_without_exceptions():
     """Verify that Streamlit AppTest executes app.py end-to-end without unhandled exceptions."""
     app_file = str(BASE_DIR / "app.py")

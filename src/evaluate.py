@@ -19,9 +19,17 @@ from sklearn.metrics import (
     mean_absolute_error,
     precision_score,
     recall_score,
-    root_mean_squared_error,
     r2_score,
 )
+
+# Backward-compatible RMSE calculation for scikit-learn < 1.4 and >= 1.4
+try:
+    from sklearn.metrics import root_mean_squared_error
+except ImportError:
+    from sklearn.metrics import mean_squared_error
+
+    def root_mean_squared_error(y_true, y_pred):
+        return float(np.sqrt(mean_squared_error(y_true, y_pred)))
 
 from src.config import (
     CLASS_LABELS,
