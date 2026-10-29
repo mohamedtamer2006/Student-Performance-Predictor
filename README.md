@@ -43,7 +43,7 @@ The platform executes two dual, independently evaluated machine learning tasks:
 - **Robust Scikit-learn Pipelines:** End-to-end preprocessing pipelines (`ColumnTransformer`) encapsulating median numerical imputation, standard scaling, and one-hot encoding with safe handling of novel categories (`handle_unknown='ignore'`).
 - **Validated Cross-Validation Selection:** 5-fold cross-validation performed strictly within training partitions to benchmark candidates against dummy baselines.
 - **Interactive Streamlit Web Interface:** A modern, accessible UI featuring categorized tab inputs, real-time prediction meters, class probability breakdowns, offline model evaluation reports, and confusion matrix visualizations.
-- **Full Offline Reproducibility:** Fixed random seeds, self-contained dataset retrieval, automated artifact serialization via Joblib, and a 100% passing Pytest automated test suite.
+- **Full Offline Reproducibility:** Fixed random seeds, self-contained dataset retrieval, automated artifact serialization via Joblib, and a comprehensive automated Pytest test suite.
 
 ---
 
@@ -296,18 +296,31 @@ The browser will open automatically at `http://localhost:8501`.
 
 ## 15. Automated Testing & QA
 
-Run the comprehensive Pytest suite:
+Run the automated test suite with Pytest:
 
 ```bash
 pytest -v
 ```
 
-### Test Suite Coverage:
-- **`test_data.py`:** Verifies dataset schema, row/column dimensions, feature-target separation, and ensures no forbidden columns ($G1$, $G2$, $G3$) contaminate input features.
-- **`test_preprocessing.py`:** Tests `ColumnTransformer`, median/mode imputation, one-hot encoding, handling of unknown inference categories, and bounds validation.
-- **`test_models.py`:** Asserts model training pipelines, metric calculations, and evaluation JSON schema compliance.
-- **`test_predictions.py`:** Tests single-student prediction, batch inference, output value ranges, and probability summation.
-- **`test_app.py`:** Tests UI metadata completeness, syntax compilation, model loading flow, and executes a headless Streamlit `AppTest`.
+### Test Suite Execution Scenarios:
+
+1. **Full Environment (Recommended — with all `requirements.txt` installed):**
+   When dependencies including Streamlit are installed, all **32 tests** execute and pass:
+   ```text
+   ============================= 32 passed in ~5-9s =============================
+   ```
+2. **Minimal / Headless Environment (Without Streamlit):**
+   If executed in an environment where Streamlit is omitted, the test suite cleanly runs the **31 core unit & integration tests** and safely skips the UI rendering test (`test_streamlit_app_renders_without_exceptions`) via `@pytest.mark.skipif`:
+   ```text
+   ======================== 31 passed, 1 skipped in ~3s =========================
+   ```
+
+### Test Suite Coverage Breakdown:
+- **`test_data.py` (8 tests):** Verifies dataset schema, row/column dimensions (395 rows, 33 columns), feature-target separation, and strictly asserts that no future grades ($G1$, $G2$, $G3$) contaminate predictor inputs.
+- **`test_preprocessing.py` (9 tests):** Tests `ColumnTransformer`, median numerical imputation, mode categorical imputation, one-hot encoding resilience against unseen categories (`handle_unknown='ignore'`), and domain bounds validation.
+- **`test_models.py` (6 tests):** Validates regression and classification pipeline fitting, synthetic evaluation calculation logic, disk artifact persistence, and `evaluation_results.json` schema integrity.
+- **`test_predictions.py` (5 tests):** Tests single-student prediction, range bounding $[0.0, 20.0]$, batch inference, and multi-class probability summation.
+- **`test_app.py` (4 tests):** Tests application syntax compilation, feature metadata schema coverage, end-to-end model loading flow, and simulated headless Streamlit execution (`AppTest`).
 
 ---
 

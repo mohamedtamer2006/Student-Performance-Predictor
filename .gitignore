@@ -30,6 +30,7 @@ ENV/
 *.zip
 *.tar.gz
 Student_Performance_Prediction_Clean.zip
+Student_Performance_Prediction_Clean/
 
 # Testing & Coverage
 .pytest_cache/
